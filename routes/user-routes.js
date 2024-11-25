@@ -2,7 +2,6 @@ import express from "express";
 import { check } from "express-validator";
 import { getAllUsers, signUp, login } from "../controllers/user-controller.js";
 import { authenticate } from "../utils/authenticate.js";
-import downloadExcelFile from "../utils/downloadExcel.js";
 
 const userRouter = express.Router();
 
@@ -24,13 +23,5 @@ userRouter.post(
   ],
   login
 );
-userRouter.get("/download-excel", (req, res) => {
-  try {
-    // Call the function to generate and send the Excel file as an API response
-    downloadExcelFile(res);
-  } catch (error) {
-    res.status(500).json({ message: "Failed to generate the Excel file.", error });
-  }
-});
 
 export default userRouter;
